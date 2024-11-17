@@ -7,7 +7,7 @@
 .friendImageAndText {
     display: flex;
     flex-direction: row;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .friendImageAndText img {
@@ -21,7 +21,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    justify-content: start;
+    justify-content: flex-start;
     margin-left: 2.7rem;
     max-width: 90%;
     background: #F5F7FB;

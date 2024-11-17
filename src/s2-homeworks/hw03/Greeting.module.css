@@ -5,7 +5,7 @@
 .inputAndButtonContainer {
     display: flex;
     padding-top: .9rem;
-    align-items: start;
+    align-items: flex-start;
 
 }
 
