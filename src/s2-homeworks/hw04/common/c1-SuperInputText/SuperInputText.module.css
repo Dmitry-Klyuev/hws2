@@ -16,5 +16,37 @@
 .errorInput:focus {
 }
 
-.error {
+.error {.input:focus {
+    outline: none;
+}
+
+    .input {
+        width: 37rem;
+        height: 3.6rem;
+        font-size: 16px;
+        padding: 1rem;
+        border: 1px solid #D1D1D1;
+        border-radius: .5rem;
+    }
+
+    .inputWrapper {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .superInput {
+    }
+
+    .errorInput {
+        border: 1px solid #CC1439;
+    }
+
+    .errorInput:focus {
+    }
+
+    .error {
+        color: #CC1439;
+        padding: .5rem 0;
+    }
+
 }
