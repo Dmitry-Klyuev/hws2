@@ -13,6 +13,7 @@ type DefaultSelectPropsType = DetailedHTMLProps<
 type SuperSelectPropsType = DefaultSelectPropsType & {
     options?: {id: number, value: string}[]
     onChangeOption?: (option: number) => void
+    themeId?: number
 }
 
 
