@@ -4,14 +4,14 @@ import s from './HW14.module.css'
 import axios from 'axios'
 import SuperDebouncedInput from './common/c8-SuperDebouncedInput/SuperDebouncedInput'
 import {useSearchParams} from 'react-router-dom'
-import {log} from "node:util";
 
 /*
 * 1 - дописать функцию onChangeTextCallback в SuperDebouncedInput
-* 2 - дописать функцию sendQuery в HW14
-* 3 - дописать функцию onChangeText в HW14
+* 2 - дописать функцию sendQuery в HW14 +
+* 3 - дописать функцию onChangeText в HW14 +
 * 4 - сделать стили в соответствии с дизайном
 * 5 - добавить HW14 в HW5/pages/JuniorPlus
+* Дебаунс
 * */
 
 const getTechs = (find: string) => {
@@ -28,7 +28,10 @@ const getTechs = (find: string) => {
 const HW14 = () => {
     const [find, setFind] = useState('')
     const [isLoading, setLoading] = useState(false)
+
+    // параметры с урла достаем фильтры - поисковые параметры:
     const [searchParams, setSearchParams] = useSearchParams()
+
     const [techs, setTechs] = useState<string[]>([])
 
     const sendQuery = (value: string) => {
@@ -36,13 +39,11 @@ const HW14 = () => {
         getTechs(value)
             .then((res) => {
                 // делает студент
-                // сохранить пришедшие данные
-                if (res) {
-                    setTechs(res.data.techs)
-                }
-            })
-            .finally(()=>{
                 setLoading(false)
+                // сохранить пришедшие данные
+                res && setTechs(res.data.techs)
+                //
+
             })
     }
 
@@ -51,17 +52,16 @@ const HW14 = () => {
         // делает студент
 
         // добавить/заменить значение в квери урла
-        // setSearchParams()
-
+        // setSearchParams( устанавливаем текст в урсл - что ввел пользователь в инпут
+        setSearchParams(value)
         //
-
     }
 
     useEffect(() => {
         const params = Object.fromEntries(searchParams)
         sendQuery(params.find || '')
         setFind(params.find || '')
-    }, [searchParams])
+    }, [])
 
     const mappedTechs = techs.map(t => (
         <div key={t} id={'hw14-tech-' + t} className={s.tech}>
