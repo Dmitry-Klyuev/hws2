@@ -51,36 +51,37 @@ const HW15 = () => {
         setLoading(true)
         getTechs(params)
             .then((res) => {
-                // делает студент
-
-                // сохранить пришедшие данные
-
-                //
+                if(res) {
+                    setTechs(res.data.techs)
+                    setTotalCount(res.data.totalCount)
+                }
+            })
+            .catch((e) => {
+                alert(e.response?.data?.errorText || e.message)
+            })
+            .finally(() => {
+                setLoading(false)
             })
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
         // делает студент
+        setPage(newPage)
+        newCount && setCount(newCount)
 
-        // setPage(
-        // setCount(
-
-        // sendQuery(
-        // setSearchParams(
-
-        //
+        sendQuery({page: newPage, count: newCount || count})
+        setSearchParams({page: newPage.toString(), count: newCount?.toString() || count.toString()})
     }
 
     const onChangeSort = (newSort: string) => {
         // делает студент
 
-        // setSort(
-        // setPage(1) // при сортировке сбрасывать на 1 страницу
+        setSort(newSort)
+        setPage(1)
 
-        // sendQuery(
-        // setSearchParams(
+        sendQuery({page: 1, count: count, sort: newSort})
+        setSearchParams({page: '1', count: count.toString(), sort: newSort})
 
-        //
     }
 
     useEffect(() => {
@@ -107,7 +108,7 @@ const HW15 = () => {
             <div className={s2.hwTitle}>Homework #15</div>
 
             <div className={s2.hw}>
-                {idLoading && <div id={'hw15-loading'} className={s.loading}>Loading...</div>}
+                {idLoading && <div id={'hw15-loading'} className={s.loading}></div>}
 
                 <SuperPagination
                     page={page}
