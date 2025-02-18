@@ -44,7 +44,7 @@ const HW15 = () => {
     const [count, setCount] = useState(4)
     const [idLoading, setLoading] = useState(false)
     const [totalCount, setTotalCount] = useState(100)
-    const [searchParams, setSearchParams] = useSearchParams()
+    const [searchParams] = useSearchParams()
     const [techs, setTechs] = useState<TechType[]>([])
 
     const sendQuery = (params: any) => {
@@ -65,22 +65,20 @@ const HW15 = () => {
     }
 
     const onChangePagination = (newPage: number, newCount: number) => {
-        // делает студент
         setPage(newPage)
-        newCount && setCount(newCount)
-
-        sendQuery({page: newPage, count: newCount || count})
-        setSearchParams({page: newPage.toString(), count: newCount?.toString() || count.toString()})
+        setCount(newCount)
+        sendQuery({page:newPage, count:newCount, sort})
     }
 
     const onChangeSort = (newSort: string) => {
+        console.log(newSort)
         // делает студент
 
         setSort(newSort)
-        setPage(1)
+        setPage(1) // при сортировке сбрасывать на 1 страницу
 
-        sendQuery({page: 1, count: count, sort: newSort})
-        setSearchParams({page: '1', count: count.toString(), sort: newSort})
+        sendQuery({page: 1, count, sort: newSort})
+        // setSearchParams(
 
     }
 

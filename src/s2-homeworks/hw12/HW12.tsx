@@ -12,8 +12,12 @@ import {AppStoreType} from "../hw10/bll/store";
 * 3 - дописать тип и логику функции change
 * 4 - передать пропсы в SuperSelect
 * */
+export type ThemeType = {
+    id: number,
+    value: number | string
+}
 
-const themes = [
+const themes: ThemeType[] = [
     {id: 1, value: 'light'},
     {id: 2, value: 'blue'},
     {id: 3, value: 'dark'},
@@ -42,7 +46,7 @@ const dispatch = useDispatch()
                     id={'hw12-select-theme'}
                     className={s.select}
                     // сделать переключение тем
-                    themeId={themeId}
+                    // themeId={themeId}
                     options={themes}
                     onChangeOption={change}
                 />
